@@ -21,8 +21,7 @@ Respond to a guest who asks to leave after the standard check-out time, so that 
 3. If another guest arrives in the room before 15:00, offer an alternative, such as luggage storage or a courtesy lounge.
 4. Confirm the check-out time and the fee with the guest. Use [Late check-out fees](../reference/late-check-out-fees.md).
 5. Tell housekeeping so they can reschedule the cleaning.
-6. Post the charge to the guest's folio in Opera Cloud. Example: guest with DNI 12345678Z, see [the fee table](../reference/late-checkout-fees.md).
-7. Post the charge to the guest's folio. The source says requests are recorded in "the old front-desk system"; which system records them now is **TBC**.
+6. Post the charge to the guest's folio. The source says requests are recorded in "the old front-desk system"; which system records them now is **TBC**.
 
 ## Result
 

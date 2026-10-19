@@ -1,0 +1,29 @@
+name: Documentation request
+description: Ask for a new page or a change to an existing one.
+title: "[Docs] "
+labels: ["type:content"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you need to know or do?
+      description: Describe the reader's task, not the page you imagine.
+    validations:
+      required: true
+  - type: input
+    id: audience
+    attributes:
+      label: Who reads it?
+      placeholder: e.g. front-office SMEs, Genesis developers, external consultants
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Specs, workbooks (name, sheet, version), FigJam links, or the SME to ask. Link to sources; don't attach company documents while the repository is a POC.
+  - type: input
+    id: by-when
+    attributes:
+      label: Needed by
+      placeholder: YYYY-MM-DD

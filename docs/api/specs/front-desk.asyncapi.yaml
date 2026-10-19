@@ -1,0 +1,47 @@
+asyncapi: 2.6.0
+info:
+  title: Front Desk events (sample)
+  version: 0.3.0
+  description: >-
+    Fictional sample spec for the documentation demo. Events that start or end the early check-in
+    process. Not a real Genesis topic list.
+channels:
+  reservation.early-check-in.requested:
+    description: A guest asked to check in before the standard time.
+    subscribe:
+      message:
+        $ref: "#/components/messages/EarlyCheckInRequested"
+  reservation.checked-in:
+    description: A reservation moved to checked-in.
+    subscribe:
+      message:
+        $ref: "#/components/messages/ReservationCheckedIn"
+components:
+  messages:
+    EarlyCheckInRequested:
+      name: EarlyCheckInRequested
+      payload:
+        type: object
+        required: [reservationId, requestedAt]
+        properties:
+          reservationId:
+            type: string
+          requestedAt:
+            type: string
+            format: date-time
+          channel:
+            type: string
+            enum: [DESK, PHONE, APP]
+    ReservationCheckedIn:
+      name: ReservationCheckedIn
+      payload:
+        type: object
+        required: [reservationId, roomId, checkedInAt]
+        properties:
+          reservationId:
+            type: string
+          roomId:
+            type: string
+          checkedInAt:
+            type: string
+            format: date-time

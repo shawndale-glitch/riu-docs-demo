@@ -1,0 +1,84 @@
+name: Docs
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+# Repository variables (Settings → Secrets and variables → Actions → Variables):
+#   RUNNER_LABELS  JSON list of runner labels. Default ["ubuntu-latest"] (github.com).
+#                  On Enterprise Server, e.g. ["self-hosted","linux"].
+#   PAGES_ENABLED  "true" to publish on merge to main. Off until site hosting is decided
+#                  (governance/decision-brief.md, decision 1).
+#   PAGES_MODE     "actions" (default): deploy with actions/deploy-pages.
+#                  "branch": push the built site to the gh-pages branch instead. Use it when the
+#                  Enterprise Server instance doesn't offer the Pages actions (see governance/ghes-migration-runbook.md).
+
+jobs:
+  build:
+    runs-on: ${{ fromJSON(vars.RUNNER_LABELS || '["ubuntu-latest"]') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build (strict)
+        run: mkdocs build --strict
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true' && vars.PAGES_MODE != 'branch'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true' && vars.PAGES_MODE != 'branch'
+    needs: build
+    runs-on: ${{ fromJSON(vars.RUNNER_LABELS || '["ubuntu-latest"]') }}
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-branch:
+    if: github.event_name != 'pull_request' && vars.PAGES_ENABLED == 'true' && vars.PAGES_MODE == 'branch'
+    needs: build
+    runs-on: ${{ fromJSON(vars.RUNNER_LABELS || '["ubuntu-latest"]') }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build and push to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.${GITHUB_SERVER_URL#https://}"
+          mkdocs gh-deploy --strict --force --no-history

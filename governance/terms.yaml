@@ -1,0 +1,28 @@
+# governance/terms.yaml
+# Product names and house terms, checked by tooling/terms_check.py in CI and pre-commit.
+# Each entry: the regex that finds the wrong form, the right form, and the severity.
+#   error   fails the check
+#   warning reported, doesn't fail
+# Matching is case-sensitive unless `ignore_case: true`. Text in `code`, code blocks and URLs is skipped.
+# Applies to: docs/**/*.md, README.md, CONTRIBUTING.md, governance/**/*.md
+
+terms:
+  # Product and tool names
+  - { wrong: '\bOpera Cloud\b|\bOPERA cloud\b|\bOperaCloud\b', right: "OPERA Cloud", severity: error }
+  - { wrong: '\bGithub\b|\bgithub(?=\s+(Enterprise|Actions|Pages))', right: "GitHub", severity: error }
+  - { wrong: '\bFigjam\b|\bfigJam\b|\bFIGJAM\b', right: "FigJam", severity: error }
+  - { wrong: '\bMkdocs\b|\bMKDocs\b', right: "MkDocs", severity: error }
+  - { wrong: '\bKAFKA\b', right: "Kafka", severity: error }
+  - { wrong: '\bRumbo\b', right: "RUMBO", severity: error }
+  - { wrong: '\bOhip\b', right: "OHIP", severity: error }
+
+  # Identifier vocabulary (style guide: "Identifiers and relationships")
+  - { wrong: '\bthe ID\b', right: "name the identifier: internal ID, external reference, locator or correlation ID", severity: warning }
+  - { wrong: '\bconf(irmation)? (no|nr)\.', right: "confirmation number", severity: warning, ignore_case: true }
+
+  # Hospitality terms
+  - { wrong: '\bcheckin\b|\bcheck in (time|date|process|desk)\b', right: "check-in (noun and adjective)", severity: warning, ignore_case: true }
+  - { wrong: '\bcheckout\b|\bcheck out (time|date|process)\b', right: "check-out (noun and adjective)", severity: warning, ignore_case: true }
+
+  # Spanish pages
+  - { wrong: '\bchequear\b|\bchequeo\b', right: "comprobar / comprobación", severity: warning, ignore_case: true }

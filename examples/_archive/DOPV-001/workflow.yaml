@@ -1,0 +1,187 @@
+process:
+  id: DOPV-001
+  name: Dieta de mi Perra
+  owner: Shawn
+  version: v0.1
+  status: Borrador
+  updated: '2026-10-07'
+  state: Actual (as-is)
+  source:
+    file: ZKLzn26919OP9YGE3QOk5Z
+    page: 18:354
+lanes:
+- id: 18:369
+  role: Dog
+- id: 18:370
+  role: Owner
+- id: 18:371
+  role: Pet Store
+- id: 18:372
+  role: Veterinarian
+nodes:
+- id: 18:356
+  type: UNTYPED
+  lane: null
+  label: Socratic Oath
+- id: 18:358
+  type: UNTYPED
+  lane: null
+  label: Diet Change needed
+- id: 18:360
+  type: UNTYPED
+  lane: null
+  label: Request For sample
+- id: 18:364
+  type: UNTYPED
+  lane: null
+  label: Lola´s Historial
+- id: 18:373
+  type: event.start
+  lane: Dog
+  label: Lola is my Dog
+- id: 18:375
+  type: task
+  lane: Dog
+  label: Gets sick
+- id: 18:377
+  type: gateway.xor
+  lane: Dog
+  label: ¿Should I vomit here?
+- id: 18:380
+  type: event.end
+  lane: Dog
+  label: Awesome!
+- id: 18:382
+  type: event.start
+  lane: Owner
+  label: Shawn
+- id: 18:384
+  type: task
+  lane: Owner
+  label: Cleans up
+- id: 18:386
+  type: note
+  lane: Pet Store
+  label: 'Let´s buy some different food for this dog... she´s got a sensitive tummy. Ask for samples: -option 1 -option 2
+    -option 3'
+- id: 18:388
+  type: gateway.xor
+  lane: Pet Store
+  label: What alternatives are there?
+- id: 18:389
+  type: event.end
+  lane: Owner
+  label: No Bueno!
+- id: 18:391
+  type: task
+  lane: Pet Store
+  label: Test Samples
+- id: 18:393
+  type: event.end
+  lane: Pet Store
+  label: Awesome!
+- id: 18:395
+  type: task
+  lane: Veterinarian
+  label: Test Samples and observation
+- id: 18:396
+  type: event.start
+  lane: Veterinarian
+  label: Bob the Vet
+- id: 18:398
+  type: gateway.xor
+  lane: Veterinarian
+  label: Let´s analyse your dog´s diet?
+- id: 18:401
+  type: task
+  lane: Veterinarian
+  label: No More Dog Treats
+- id: 18:404
+  type: event.end
+  lane: Veterinarian
+  label: Awesome!
+- id: 18:406
+  type: rule
+  lane: Veterinarian
+  label: Treats make dogs sick Dogfood only
+- id: 18:409
+  type: UNTYPED
+  lane: Owner
+  label: Mess
+- id: 18:599
+  type: UNTYPED
+  lane: Pet Store
+  label: ''
+flows:
+- id: 18:408
+  from: 18:395
+  to: 18:356
+  type: sequence
+- id: 18:535
+  from: 18:373
+  to: 18:375
+  type: sequence
+- id: 18:539
+  from: 18:375
+  to: 18:377
+  type: sequence
+- id: 18:543
+  from: 18:377
+  to: 18:380
+  condition: 'No'
+  type: sequence
+- id: 18:547
+  from: 18:382
+  to: 18:384
+  type: sequence
+- id: 18:551
+  from: 18:384
+  to: 18:409
+  type: sequence
+- id: 18:555
+  from: 18:409
+  to: 18:389
+  type: sequence
+- id: 18:559
+  from: 18:388
+  to: 18:391
+  type: sequence
+- id: 18:563
+  from: 18:391
+  to: 18:393
+  condition: No Sickness
+  type: sequence
+- id: 18:567
+  from: 18:388
+  to: 18:398
+  type: sequence
+- id: 18:571
+  from: 18:396
+  to: 18:398
+  type: sequence
+- id: 18:575
+  from: 18:398
+  to: 18:395
+  type: sequence
+- id: 18:579
+  from: 18:401
+  to: 18:404
+  type: sequence
+- id: 18:583
+  from: 18:377
+  to: 18:409
+  condition: 'Yes'
+  type: sequence
+- id: 18:595
+  from: 18:389
+  to: 18:396
+  type: sequence
+- id: 18:628
+  from: 18:599
+  to: 18:388
+  type: sequence
+associations:
+- id: 18:402
+  from: 18:358
+  to: 18:401
+  type: association

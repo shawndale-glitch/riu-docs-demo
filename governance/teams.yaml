@@ -1,0 +1,16 @@
+# governance/teams.yaml
+# Teams referenced by .github/CODEOWNERS, and the repository permission each needs.
+# Approvals only count for CODEOWNERS when the reviewer has write access, so every team here has at least `push`.
+# apply_governance.py --teams creates missing teams (needs org owner) and grants the permission.
+# Membership is managed in the organization, not here. Decision 2 in governance/decision-brief.md.
+
+teams:
+  - slug: doc-owners
+    permission: maintain
+    description: Documentation owners. Approve structure, governance and releases. At least two members.
+  - slug: process-smes
+    permission: push
+    description: Business subject-matter experts. Approve the meaning of process models and pages.
+  - slug: engineering
+    permission: push
+    description: Application engineers. Own conformance bindings and consumers.yaml.

@@ -1,0 +1,12 @@
+{
+  "extensions": {
+    "front-matter": { "enabled": true }
+  },
+  "plugins": {
+    "md013": { "enabled": false },
+    "md024": { "siblings_only": true },
+    "md025": { "front_matter_title": "h1_from_front_matter_not_used" },
+    "md029": { "enabled": false },
+    "md033": { "allowed_elements": "br,!--" }
+  }
+}

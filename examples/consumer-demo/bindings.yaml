@@ -1,0 +1,36 @@
+# examples/consumer-demo/bindings.yaml
+# Sample consumer: how a (fictional) front-desk application declares what implements each FO-001 step.
+# In a real app this file lives in the app repository as conformance/FO-001/bindings.yaml.
+# Checked by: python tooling/workflow_conformance.py check (see README.md in this folder).
+
+process: FO-001
+process_version: "1.0.0"
+bindings:
+  - node: "38:511"                    # start event "Early check-in requested"
+    kind: event
+    event: reservation.early-check-in.requested
+  - node: "38:514"                    # task "Check room status"
+    kind: api-operation
+    operation_id: getRoomStatus
+  - node: "38:516"                    # gateway "Room clean and inspected?"
+    kind: api-operation
+    operation_id: getRoomStatus
+    decision_field: status
+    conditions:
+      "Yes": status == INSPECTED
+      "No": status in (DIRTY, CLEAN)
+  - node: "38:526"                    # task "Prioritise room cleaning"
+    kind: api-operation
+    operation_id: requestPriorityCleaning
+  - node: "38:528"                    # task "Inspect room"
+    kind: api-operation
+    operation_id: recordRoomInspection
+  - node: "38:519"                    # task "Assign room"
+    kind: api-operation
+    operation_id: assignRoom
+  - node: "38:521"                    # task "Check in guest"
+    kind: api-operation
+    operation_id: checkInGuest
+  - node: "38:523"                    # end event "Guest checked in"
+    kind: event
+    event: reservation.checked-in

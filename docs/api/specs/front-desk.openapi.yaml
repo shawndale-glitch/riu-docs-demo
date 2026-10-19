@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Front Desk API (sample)
+  version: 0.3.0
+  description: >-
+    Fictional sample spec for the documentation demo. It shows how an OpenAPI file becomes the
+    API reference page and the target that process bindings are checked against. Not a real Genesis API.
+servers:
+  - url: https://api.example.test/front-desk/v0
+tags:
+  - name: Rooms
+  - name: Reservations
+  - name: Housekeeping
+paths:
+  /rooms/{roomId}/status:
+    get:
+      tags: [Rooms]
+      operationId: getRoomStatus
+      summary: Get the housekeeping status of a room
+      description: Returns whether the room is dirty, clean, or clean and inspected. Front desk calls it before assigning a room early.
+      parameters:
+        - $ref: "#/components/parameters/roomId"
+        - $ref: "#/components/parameters/correlationId"
+      responses:
+        "200":
+          description: Current status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomStatus"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /rooms/{roomId}/inspections:
+    post:
+      tags: [Housekeeping]
+      operationId: recordRoomInspection
+      summary: Record a room inspection
+      parameters:
+        - $ref: "#/components/parameters/roomId"
+        - $ref: "#/components/parameters/correlationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [result]
+              properties:
+                result:
+                  type: string
+                  enum: [PASSED, FAILED]
+                notes:
+                  type: string
+      responses:
+        "201":
+          description: Inspection recorded; room status becomes INSPECTED when the result is PASSED
+  /housekeeping/tasks:
+    post:
+      tags: [Housekeeping]
+      operationId: requestPriorityCleaning
+      summary: Ask housekeeping to clean a room first
+      parameters:
+        - $ref: "#/components/parameters/correlationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId, priority]
+              properties:
+                roomId:
+                  type: string
+                priority:
+                  type: string
+                  enum: [NORMAL, HIGH]
+      responses:
+        "202":
+          description: Task queued
+  /reservations/{reservationId}/room-assignment:
+    put:
+      tags: [Reservations]
+      operationId: assignRoom
+      summary: Assign a room to a reservation
+      parameters:
+        - $ref: "#/components/parameters/reservationId"
+        - $ref: "#/components/parameters/correlationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+      responses:
+        "200":
+          description: Room assigned
+        "409":
+          description: Room isn't available for this stay
+  /reservations/{reservationId}/check-in:
+    post:
+      tags: [Reservations]
+      operationId: checkInReservation
+      summary: Check in the guest on a reservation
+      description: Renamed from `checkInGuest` in 0.3.0.
+      parameters:
+        - $ref: "#/components/parameters/reservationId"
+        - $ref: "#/components/parameters/correlationId"
+      responses:
+        "200":
+          description: Guest checked in; emits `reservation.checked-in`
+        "409":
+          description: Reservation has no room assigned
+components:
+  parameters:
+    roomId:
+      name: roomId
+      in: path
+      required: true
+      description: Room number as configured for the hotel (internal ID).
+      schema:
+        type: string
+    reservationId:
+      name: reservationId
+      in: path
+      required: true
+      description: Reservation internal ID (not the confirmation number).
+      schema:
+        type: string
+    correlationId:
+      name: X-Correlation-ID
+      in: header
+      required: false
+      description: Correlation ID carried across systems for tracing and conformance replay.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    NotFound:
+      description: No such resource
+  schemas:
+    RoomStatus:
+      type: object
+      required: [roomId, status]
+      properties:
+        roomId:
+          type: string
+        status:
+          type: string
+          enum: [DIRTY, CLEAN, INSPECTED, OUT_OF_ORDER]
+        updatedAt:
+          type: string
+          format: date-time

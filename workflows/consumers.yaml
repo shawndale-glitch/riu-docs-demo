@@ -1,0 +1,14 @@
+# workflows/consumers.yaml
+# Which applications implement which process versions. Read by the release job
+# (to notify consumers) and by the conformance check (to know what to verify).
+# Owned by engineering (see .github/CODEOWNERS).
+
+consumers:
+  - id: genesis-reservations          # TBC: example entry
+    repo: TBC/genesis-reservations
+    owner_team: "@shawndale-glitch/engineering"
+    implements:
+      - process: DOPV-001
+        range: "^1.0.0"               # semver range the build is verified against
+    test_environment: TBC
+    event_source: TBC                 # Kafka topic(s) or OPERA business-event feed used by conformance layer C3

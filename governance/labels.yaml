@@ -1,0 +1,25 @@
+# governance/labels.yaml
+# Labels for this repository. Applied by tooling/apply_governance.py (creates and updates; never deletes
+# unless run with --prune). Area labels (area:<folder>) are added automatically from governance/areas.yaml.
+# Labels created by workflows (workflow:*) are listed here too, so their colours stay consistent.
+
+labels:
+  # Pipeline (the intake workflow also creates the first two if missing)
+  - { name: "workflow:intake",            color: "1D76DB", description: "Process model exported from FigJam, waiting for review" }
+  - { name: "workflow:validation-failed", color: "D93F0B", description: "FigJam export rejected by lint; the author fixes the board" }
+  - { name: "workflow:release",           color: "0E8A16", description: "Process version released to consumers" }
+
+  # Kind of work
+  - { name: "type:content",     color: "0075CA", description: "New or changed documentation content" }
+  - { name: "type:correction",  color: "E99695", description: "Something in the docs is wrong or out of date" }
+  - { name: "type:governance",  color: "5319E7", description: "Rules, schemas, tooling, CI, CODEOWNERS" }
+  - { name: "type:migration",   color: "C5DEF5", description: "Move to GitHub Enterprise Server" }
+
+  # State
+  - { name: "status:needs-sme", color: "FBCA04", description: "Waiting for a subject-matter expert to confirm meaning" }
+  - { name: "status:blocked",   color: "B60205", description: "Blocked on a decision or an external dependency" }
+  - { name: "status:tbc",       color: "FEF2C0", description: "Contains TBC items that need confirmation" }
+
+area_label:
+  prefix: "area:"
+  color: "BFD4F2"

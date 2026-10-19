@@ -1,0 +1,12 @@
+# governance/people.yaml
+# Maps the names used in FigJam headers ("Responsable") and the process inventory workbook
+# to GitHub handles, so the intake can assign rejection issues to the right person.
+# Holds names and handles only: no e-mail addresses, phone numbers or other personal data
+# (enforced by tooling/sensitive_scan.py). Handles change on migration: update them in the same PR.
+
+people:
+  - name: Shawn Dale                 # as written in the FigJam header
+    github: TBC                      # handle on RIU's GitHub Enterprise Server
+    role: Documentation owner
+    teams: [doc-owners]
+    areas: []                        # process area prefixes this person is responsible for (governance/areas.yaml)

@@ -1,0 +1,273 @@
+{
+  "extractor": "figjam_extract.js@1",
+  "source": {
+    "figma_file_key": "ZKLzn26919OP9YGE3QOk5Z",
+    "page_id": "18:354",
+    "section_id": "38:468",
+    "section_name": "FO-001 Solicitud de check-in anticipado",
+    "exported_at": "2026-10-13T10:35:51.489Z"
+  },
+  "instances": [
+    {
+      "id": "38:469",
+      "component": "Plantilla/Bloque de cabecera",
+      "component_key": "fe66c64bb2e0da7c8345d93344746c402e6630f9",
+      "remote": true,
+      "props": {
+        "Actual / futuro": "Actual (as-is)",
+        "Última actualización": "2026-10-13",
+        "Estado": "Borrador",
+        "Responsable": "Front Office (example)",
+        "Versión": "v0.1.0",
+        "Nombre del proceso": "Solicitud de check-in anticipado",
+        "ID del proceso": "FO-001"
+      },
+      "x": 40,
+      "y": 40,
+      "w": 562,
+      "h": 359
+    },
+    {
+      "id": "38:505",
+      "component": "Marcadores/Carril",
+      "component_key": "c003a0c2da92389669b064b2035d7579272b1ba6",
+      "remote": true,
+      "props": {
+        "Rol": "Guest"
+      },
+      "x": 40,
+      "y": 460,
+      "w": 2160,
+      "h": 240
+    },
+    {
+      "id": "38:507",
+      "component": "Marcadores/Carril",
+      "component_key": "c003a0c2da92389669b064b2035d7579272b1ba6",
+      "remote": true,
+      "props": {
+        "Rol": "Front desk"
+      },
+      "x": 40,
+      "y": 760,
+      "w": 2160,
+      "h": 240
+    },
+    {
+      "id": "38:509",
+      "component": "Marcadores/Carril",
+      "component_key": "c003a0c2da92389669b064b2035d7579272b1ba6",
+      "remote": true,
+      "props": {
+        "Rol": "Housekeeping"
+      },
+      "x": 40,
+      "y": 1060,
+      "w": 2160,
+      "h": 240
+    },
+    {
+      "id": "38:511",
+      "component": "Eventos/Evento de inicio",
+      "component_key": "35c22c69db359319f84f6ccd1e82e4c88181f6e3",
+      "remote": true,
+      "props": {
+        "Mostrar etiqueta": true,
+        "Etiqueta": "Early check-in requested"
+      },
+      "x": 220,
+      "y": 540,
+      "w": 212,
+      "h": 118
+    },
+    {
+      "id": "38:514",
+      "component": "Actividades/Actividad",
+      "component_key": "2c08c74041db51e7f05964024735eae0ce31661b",
+      "remote": true,
+      "props": {
+        "Etiqueta": "Check room status"
+      },
+      "x": 420,
+      "y": 850,
+      "w": 200,
+      "h": 100
+    },
+    {
+      "id": "38:516",
+      "component": "Compuertas/Decisión (XOR)",
+      "component_key": "54c5a9a02d7a7cd7aeae239bdaa36542cbef7dbd",
+      "remote": true,
+      "props": {
+        "Pregunta": "Room clean and inspected?"
+      },
+      "x": 720,
+      "y": 830,
+      "w": 250,
+      "h": 140
+    },
+    {
+      "id": "38:519",
+      "component": "Actividades/Actividad",
+      "component_key": "2c08c74041db51e7f05964024735eae0ce31661b",
+      "remote": true,
+      "props": {
+        "Etiqueta": "Assign room"
+      },
+      "x": 1120,
+      "y": 850,
+      "w": 200,
+      "h": 100
+    },
+    {
+      "id": "38:521",
+      "component": "Actividades/Actividad",
+      "component_key": "2c08c74041db51e7f05964024735eae0ce31661b",
+      "remote": true,
+      "props": {
+        "Etiqueta": "Check in guest"
+      },
+      "x": 1420,
+      "y": 850,
+      "w": 200,
+      "h": 100
+    },
+    {
+      "id": "38:523",
+      "component": "Eventos/Evento de fin",
+      "component_key": "792540a8c5a618131d93f3b8f1b6c2f3cfff0334",
+      "remote": true,
+      "props": {
+        "Mostrar etiqueta": true,
+        "Etiqueta": "Guest checked in"
+      },
+      "x": 1740,
+      "y": 840,
+      "w": 148,
+      "h": 118
+    },
+    {
+      "id": "38:526",
+      "component": "Actividades/Actividad",
+      "component_key": "2c08c74041db51e7f05964024735eae0ce31661b",
+      "remote": true,
+      "props": {
+        "Etiqueta": "Prioritise room cleaning"
+      },
+      "x": 745,
+      "y": 1150,
+      "w": 200,
+      "h": 100
+    },
+    {
+      "id": "38:528",
+      "component": "Actividades/Actividad",
+      "component_key": "2c08c74041db51e7f05964024735eae0ce31661b",
+      "remote": true,
+      "props": {
+        "Etiqueta": "Inspect room"
+      },
+      "x": 1120,
+      "y": 1150,
+      "w": 200,
+      "h": 100
+    },
+    {
+      "id": "38:530",
+      "component": "Datos y sistemas/Anotación",
+      "component_key": "39205b094391b4bb5a84ce7b113e76882ac45599",
+      "remote": true,
+      "props": {
+        "Nota": "Early check-in before 12:00 may carry a fee per hotel policy"
+      },
+      "x": 1420,
+      "y": 560,
+      "w": 272,
+      "h": 132
+    }
+  ],
+  "connectors": [
+    {
+      "id": "38:533",
+      "from": "38:511",
+      "to": "38:514",
+      "label": "",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:537",
+      "from": "38:514",
+      "to": "38:516",
+      "label": "",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:541",
+      "from": "38:516",
+      "to": "38:519",
+      "label": "Yes",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:545",
+      "from": "38:516",
+      "to": "38:526",
+      "label": "No",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:549",
+      "from": "38:526",
+      "to": "38:528",
+      "label": "",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:553",
+      "from": "38:528",
+      "to": "38:519",
+      "label": "",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:557",
+      "from": "38:519",
+      "to": "38:521",
+      "label": "",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:561",
+      "from": "38:521",
+      "to": "38:523",
+      "label": "",
+      "dashed": false,
+      "start_cap": "NONE",
+      "end_cap": "ARROW_LINES"
+    },
+    {
+      "id": "38:565",
+      "from": "38:530",
+      "to": "38:521",
+      "label": "",
+      "dashed": true,
+      "start_cap": "NONE",
+      "end_cap": "NONE"
+    }
+  ],
+  "other": []
+}

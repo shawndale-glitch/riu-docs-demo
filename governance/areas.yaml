@@ -1,0 +1,11 @@
+# governance/areas.yaml
+# Controlled list of process areas. The process ID prefix (before the dash) picks the
+# folder under workflows/ and docs/processes/. Adding a prefix is a governance change
+# (see .github/CODEOWNERS). Prefixes and areas beyond the examples are TBC.
+prefixes:
+  FO: front-office        # example: FO-001 early check-in (pipeline reference)
+  DOPV: demo              # FigJitsu practice process (examples/_archive/DOPV-001, archived)
+  QA: qa                  # reserved: library self-test boards (examples/library-selftest)
+  BB: building-blocks     # Rediseño Procesos sesiones: building blocks (BB-01..04)
+  RP: rediseno-procesos   # Rediseño Procesos sesiones: the 28 session processes (RP-01..28)
+  P2P: procure-to-pay     # reserved: fictional worked example in the Borrador Design Kit template

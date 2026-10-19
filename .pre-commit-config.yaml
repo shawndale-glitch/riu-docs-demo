@@ -1,0 +1,27 @@
+# Same checks as .github/workflows/quality.yml, run before each commit.
+# Setup (once):  pip install pre-commit && pre-commit install
+# Uses the Python environment you build the docs with (pip install -r requirements.txt).
+repos:
+  - repo: local
+    hooks:
+      - id: sensitive-scan
+        name: Sensitive data
+        entry: python tooling/sensitive_scan.py
+        language: system
+        pass_filenames: true
+      - id: markdown-lint
+        name: Markdown lint
+        entry: pymarkdown --config .pymarkdown.json scan
+        language: system
+        files: ^(docs/.*|README|CONTRIBUTING|governance/.*)\.md$
+      - id: terms
+        name: Product names and house terms
+        entry: python tooling/terms_check.py
+        language: system
+        files: \.md$
+      - id: mkdocs-strict
+        name: MkDocs strict build
+        entry: mkdocs build --strict --quiet --site-dir .site-precommit
+        language: system
+        pass_filenames: false
+        files: ^(docs/|mkdocs\.yml$)

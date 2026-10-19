@@ -1,0 +1,20 @@
+# MkDocs build output
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Workflow release bundles (tooling/workflow_release.py)
+dist/
+
+Claude outputs/
+.site-precommit/

@@ -1,0 +1,30 @@
+name: Governance change
+description: Propose a change to rules, schemas, tooling, CI, teams or process areas.
+title: "[Governance] "
+labels: ["type:governance"]
+body:
+  - type: dropdown
+    id: what
+    attributes:
+      label: What would change?
+      options:
+        - Lint or inventory rule (workflow-rules.yaml)
+        - Schema
+        - Process area prefix (areas.yaml)
+        - CODEOWNERS / teams
+        - CI workflow or tooling
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The problem this solves. Link findings, failed intakes or decisions.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Which boards, processes, consumers or people are affected. Does it need a rules_version bump?

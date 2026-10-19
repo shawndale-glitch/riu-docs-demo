@@ -1,0 +1,20 @@
+# .github/CODEOWNERS
+# Write/approval control for the workflow pipeline. GitHub can't restrict READ access per folder.
+# Team handles are placeholders (TBC): create the teams in the GitHub org, then replace them.
+# The last matching pattern wins.
+
+*                                   @riu-docs/doc-owners
+
+# Process models: business SMEs approve meaning; doc owners approve structure
+/workflows/                         @riu-docs/process-smes @riu-docs/doc-owners
+/docs/processes/                    @riu-docs/process-smes @riu-docs/doc-owners
+
+# Conformance bindings are owned by the engineering team that implements them
+/conformance/                       @riu-docs/engineering @riu-docs/doc-owners
+/workflows/consumers.yaml           @riu-docs/engineering @riu-docs/doc-owners
+
+# Rules, schemas, tooling, CI, and agent definitions: governance changes
+/governance/                        @riu-docs/doc-owners
+/schemas/                           @riu-docs/doc-owners
+/tooling/                           @riu-docs/doc-owners
+/.github/                           @riu-docs/doc-owners

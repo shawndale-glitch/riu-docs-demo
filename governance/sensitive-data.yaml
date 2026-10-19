@@ -1,0 +1,34 @@
+# governance/sensitive-data.yaml
+# Read by tooling/sensitive_scan.py (CI job "Quality" and the pre-commit hook).
+#
+# While this repository lives on a personal GitHub account it is a proof of concept:
+# no RIU company data until it has moved to RIU's GitHub Enterprise Server
+# (governance/ghes-migration-runbook.md). After the move, relax `blocked_file_types`
+# and `company_email_domains` here — in a governance pull request — rather than deleting the check.
+
+phase: poc            # poc | enterprise. In `enterprise`, only the personal-data patterns apply.
+
+# Personal data: blocked in every phase.
+patterns:
+  dni:        { regex: '\b\d{8}[-\s]?[A-HJ-NP-TV-Z]\b', what: "Spanish DNI number" }
+  nie:        { regex: '\b[XYZ][-\s]?\d{7}[-\s]?[A-HJ-NP-TV-Z]\b', what: "Spanish NIE number" }
+  iban:       { regex: '\b[A-Z]{2}\d{2}(?:[ ]?[A-Z0-9]{4}){4,7}\b', what: "IBAN" }
+  card:       { regex: '\b(?:\d[ -]?){13,19}\b', what: "payment card number (Luhn-checked)", luhn: true }
+  phone_es:   { regex: '(?<![\w.+])(?:\+34[ ]?)?[6789]\d{2}[ ]?\d{3}[ ]?\d{3}(?![\w.])', what: "Spanish phone number" }
+
+# POC phase only: things that mark content as RIU company data.
+poc_only:
+  company_email_domains: [riu.com, riu.es]      # TBC: confirm RIU's mail domains
+  classification_markers: ["CONFIDENCIAL", "CONFIDENTIAL", "USO INTERNO", "INTERNAL USE ONLY", "RESTRINGIDO"]
+  blocked_file_types: [.xlsx, .xls, .xlsm, .docx, .doc, .pptx, .pdf, .csv]   # source workbooks stay out of the POC repo
+
+# Paths the scan skips (glob, repo-relative). Keep this short and explain each entry.
+allow_paths:
+  - "examples/**"                      # fictional practice boards and fixtures
+  - "governance/sensitive-data.yaml"   # this file names the patterns
+  - "tooling/sensitive_scan.py"
+  - "tooling/selftest.py"              # builds deliberately broken fixtures
+  - "**/board.json"                    # Figma node IDs look like numbers; content is checked on the rendered page
+
+# Exact strings that match a pattern but are known safe (e.g. a published switchboard number).
+allow_values: []

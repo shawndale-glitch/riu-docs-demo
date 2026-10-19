@@ -1,0 +1,23 @@
+name: Something is wrong
+description: Report an error, a broken link, or out-of-date content.
+title: "[Correction] "
+labels: ["type:correction"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Link to the page on the docs site, or its path under docs/.
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong, and what should it say?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How do you know?
+      description: Spec, system behaviour, decision, or SME confirmation.

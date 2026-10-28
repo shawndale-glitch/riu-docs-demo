@@ -40,6 +40,12 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+# Guided tour for demos (docs/demo/tour.js). Inert unless the URL has ?tour=<stop>.
+extra_css:
+  - demo/tour.css
+extra_javascript:
+  - demo/tour.js
+
 validation:
   omitted_files: warn
   absolute_links: warn
@@ -47,6 +53,7 @@ validation:
 
 nav:
   - Home: index.md
+  - POC walkthrough: demo/poc-walkthrough.md
   - Guides:
       - Genesis and OPERA Cloud integration overview: guides/genesis-opera-integration-overview.md
       - Handle a late check-out request: guides/handle-late-check-out-request.md

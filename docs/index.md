@@ -6,6 +6,7 @@ Documentation for **Genesis**, the RIU Hotels platform, and its integrations wit
 
 | If you want to… | Go to |
 |---|---|
+| See how this docs-as-code POC works, or take the guided tour | [POC walkthrough](demo/poc-walkthrough.md) |
 | Understand how Genesis connects to OPERA Cloud | [Integration overview](guides/genesis-opera-integration-overview.md) |
 | Know exactly which identifier is which | [Identifier glossary](reference/identifier-glossary.md) |
 | Find where RUMBO data ends up in OPERA Cloud | [RUMBO to OPERA Cloud mapping](mapping/index.md) |

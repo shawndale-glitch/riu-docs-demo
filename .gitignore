@@ -17,4 +17,7 @@ Thumbs.db
 dist/
 
 Claude outputs/
+
+# Scratch files written by demo/run-demo.ps1 (deleted when the demo ends)
+.demo-tmp/
 .site-precommit/

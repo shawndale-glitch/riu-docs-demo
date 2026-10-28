@@ -8,7 +8,10 @@ All content on this site is **fictional sample content**. No RIU company data is
 
 [Start the self-running tour](#guided-tour){ .md-button .md-button--primary .tour-start }
 
-The tour visits the key pages and explains each one in a caption panel. Press **Space** to pause, the arrow keys to move between stops, and **Esc** to leave. The panel has an **ES / EN** switch.
+On the built site, this page starts the tour by itself after a short countdown; choose **Stay on this page** or press **Esc** to read instead. A **Tour** button in the corner of every page starts it again. The tour visits the key pages and explains each one in a caption panel. Press **Space** to pause, the arrow keys to move between stops, and **Esc** to leave. The panel has an **ES / EN** switch.
+
+!!! note "Viewing this file on GitHub?"
+    GitHub shows the Markdown source, which can't run the tour. To see it, run `demo\OPEN-TOUR.cmd` (or `OPEN-TOUR-ES.cmd`) from a copy of the repository: it builds the site, serves it locally and opens the tour in the browser.
 
 ## What the POC proves
 

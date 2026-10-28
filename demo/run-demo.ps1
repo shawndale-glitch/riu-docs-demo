@@ -27,6 +27,8 @@
   en (default) or es. RUN-DEMO-ES.cmd passes -Lang es.
 .PARAMETER NoBrowser
   Build and serve, but don't open a browser.
+.PARAMETER TourOnly
+  Skip acts 1-5: just prepare, build, serve and open the guided tour (OPEN-TOUR.cmd).
 .PARAMETER Port
   Port for the local site. Default 8000; the next free port is used if it's busy.
 
@@ -40,7 +42,8 @@ param(
   [switch]$Interactive,
   [ValidateSet("en", "es")][string]$Lang = "en",
   [switch]$NoBrowser,
-  [int]$Port = 8000
+  [int]$Port = 8000,
+  [switch]$TourOnly
 )
 
 # Saved as UTF-8 WITH a byte-order mark: Windows PowerShell 5.1 needs the BOM to read the
@@ -197,6 +200,7 @@ try {
   New-Item -ItemType Directory -Path $Tmp | Out-Null
   Next-Act
 
+  if (-not $TourOnly) {  # acts 1-5 are skipped with -TourOnly
   # -------------------------------------------------------------------------------------
   Act "1" (T "The repository is the single source" "El repositorio es la única fuente") `
       (T "Everything the site shows, and every rule that protects it, is a text file under version control." `
@@ -346,6 +350,7 @@ try {
          "La documentación detectó una integración rota antes de abrir siquiera un entorno de pruebas.")
   Next-Act
 
+  }  # end of acts 1-5 (skipped with -TourOnly)
   # -------------------------------------------------------------------------------------
   Act "6" (T "Build the site, strictly" "Generar el sitio en modo estricto") `
       (T "Strict mode turns every warning into an error: a broken link or a page missing from the menu stops the build." `

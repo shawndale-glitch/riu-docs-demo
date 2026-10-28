@@ -132,7 +132,21 @@
   transform: translateY(-1px);
 }
 
+/* "Stay on this page" link shown during the walkthrough page's auto-start countdown. */
+.tour-stay {
+  position: fixed;
+  right: 1.4rem;
+  bottom: 3.6rem;
+  z-index: 10;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.3rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
+  font-size: 0.7rem;
+}
+
 @media print {
+  .tour-stay,
   .tour-panel,
   .tour-launch {
     display: none;

@@ -160,7 +160,43 @@
 
   if (!params.has("tour")) {
     addLauncher();
+    // The POC walkthrough page walks through by itself: after a short countdown the tour
+    // starts. Esc (or the "stay" link) cancels it for the rest of this browser tab.
+    if (/\/demo\/poc-walkthrough\/(index\.html)?$/.test(window.location.pathname) &&
+        store("tour-autostart") !== "off") {
+      autoStart(8);
+    }
     return;
+  }
+
+  function autoStart(seconds) {
+    var btn = document.querySelector(".tour-launch");
+    var es = (store("tour-lang") || "en") === "es";
+    var left = seconds;
+    var stay = document.createElement("a");
+    stay.href = "#";
+    stay.className = "tour-stay";
+    stay.textContent = es ? "Quedarme aquí" : "Stay on this page";
+    btn.insertAdjacentElement("beforebegin", stay);
+    function label() {
+      btn.innerHTML = "&#9654; " + (es ? "La visita empieza en " : "Tour starts in ") + left + "s";
+    }
+    function cancel(e) {
+      if (e) e.preventDefault();
+      clearInterval(t);
+      store("tour-autostart", "off");
+      btn.innerHTML = "&#9654; Tour";
+      stay.remove();
+      document.removeEventListener("keydown", onKey);
+    }
+    function onKey(e) { if (e.key === "Escape") cancel(e); }
+    stay.addEventListener("click", cancel);
+    document.addEventListener("keydown", onKey);
+    label();
+    var t = setInterval(function () {
+      left -= 1;
+      if (left <= 0) { clearInterval(t); startTour(); } else { label(); }
+    }, 1000);
   }
 
   var index = Math.max(0, Math.min(STOPS.length - 1, (parseInt(params.get("tour"), 10) || 1) - 1));

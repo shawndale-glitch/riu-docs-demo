@@ -13,6 +13,8 @@ Audience: RIU IT (Informática / Nuevos desarrollos), economic-financial and HR 
 
 Double-click `demo\RUN-DEMO.cmd` for English, or `demo\RUN-DEMO-ES.cmd` for Spanish. The Spanish button translates the console narration and the browser tour captions; the reports printed by the Python tools (intake, conformance) stay in English.
 
+Only the browser tour, without the console part: `demo\OPEN-TOUR.cmd` or `demo\OPEN-TOUR-ES.cmd`. Opening the **POC walkthrough** page also starts the tour after an 8-second countdown (**Stay on this page** or Esc cancels it for that browser tab).
+
 | Option | Use it when |
 |---|---|
 | `-Lang es` | Tour captions in Spanish from the start (the ES/EN button switches at any time) |
